@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SubscribeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layout');
-})->name('subscribe');
+Route::resource('subscribe', SubscribeController::class);
 
 Route::fallback(function () {
-    return redirect()->route('welcome');
+    return redirect()->route('subscribe.create');
 });

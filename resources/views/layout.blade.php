@@ -1,10 +1,8 @@
 <!doctype html>
 <html lang="en">
     @include('includes.head')
-    <body>
-        @yield('header')
+    <body class="bg-body-tertiary">
         @yield('content')
-        @yield('footer')
         @include('includes.scripts')
     </body>
 </html>

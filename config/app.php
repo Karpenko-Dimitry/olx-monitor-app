@@ -185,6 +185,8 @@ return [
         /*
          * Package Service Providers...
          */
+        App\Services\RequestService\RequestServiceProvider::class,
+        App\Services\ParseService\ParseServiceProvider::class,
 
         /*
          * Application Service Providers...
