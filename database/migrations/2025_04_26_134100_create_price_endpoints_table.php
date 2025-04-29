@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('price_endpoints', function (Blueprint $table) {
             $table->id();
+            $table->boolean('active')->default(true);;
             $table->string('slug')->unique();;
             $table->text('url');
             $table->float('previous_price')->nullable();

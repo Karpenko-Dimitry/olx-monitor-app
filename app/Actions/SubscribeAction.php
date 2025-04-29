@@ -11,7 +11,11 @@ use Illuminate\Support\Str;
 
 class SubscribeAction
 {
-    public function execute(Request $request): Model|User
+    /**
+     * @param Request $request
+     * @return PriceEndpoint|Model
+     */
+    public function execute(Request $request): Model|PriceEndpoint
     {
         $email = $request->get('email');
         $name = explode('@', $email)[0];
@@ -27,6 +31,6 @@ class SubscribeAction
             $user->price_endpoints->pluck('id')->add($priceEndpoint->id)->unique()->toArray()
         );
 
-        return $user;
+        return $priceEndpoint;
     }
 }

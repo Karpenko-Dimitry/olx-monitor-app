@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Actions\SubscribeAction;
 use App\Http\Requests\PriceEndpoint\StoreSubscribeRequest;
-use App\Models\PriceEndpoint;
-use App\Models\User;
+use App\Jobs\ParsePriceJob;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -22,7 +21,8 @@ class SubscribeController extends Controller
 
     public function store(StoreSubscribeRequest $request, SubscribeAction $subscribeAction)
     {
-        $subscribeAction->execute($request);
+        $priceEndPoint = $subscribeAction->execute($request);
+        dispatch(new ParsePriceJob($priceEndPoint->id));
 
         return redirect()->back()->with('success', trans('subscribe.success_message'));
     }
